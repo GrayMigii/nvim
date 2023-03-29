@@ -70,8 +70,7 @@ return require('packer').startup(function(use)
   use 'windwp/nvim-autopairs'
   use { 'windwp/nvim-ts-autotag', after = 'nvim-treesitter' }
   use 'lewis6991/gitsigns.nvim'
+  
+  use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons'}
 
-  if packer_bootstrap then
-    require('packer').sync()
-  end
 end)
