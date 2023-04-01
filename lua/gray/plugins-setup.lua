@@ -11,20 +11,24 @@ end
 
 local packer_bootstrap = ensure_packer()
 
--- This file can be loaded by calling `lua require('plugins')` from your init.vim
+vim.cmd([[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins-setup.lua source <afile> | PackerSync
+  augroup end
+]])
 
--- Only required if you have packer configured as `opt`
-vim.cmd [[packadd packer.nvim]]
+local status, packer = pcall(require, "packer")
+if not status then
+  return
+end
 
-return require('packer').startup(function(use)
-  -- Packer can manage itself
+return packer.startup({function(use)
   use 'wbthomason/packer.nvim'
 
   use 'nvim-lua/plenary.nvim' 
 
   use 'sainnhe/everforest'
-
-  use 'tpope/vim-surround' 
 
   use 'nvim-tree/nvim-tree.lua'
 
@@ -41,7 +45,6 @@ return require('packer').startup(function(use)
   use 'L3MON4D3/luaSnip'
   use 'saadparwaiz1/cmp_luasnip'
   use 'rafamadriz/friendly-snippets'
-  
 
   use ("williamboman/mason.nvim")
   use ("williamboman/mason-lspconfig.nvim")
@@ -70,7 +73,17 @@ return require('packer').startup(function(use)
   use 'windwp/nvim-autopairs'
   use { 'windwp/nvim-ts-autotag', after = 'nvim-treesitter' }
   use 'lewis6991/gitsigns.nvim'
-  
-  use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons'}
 
-end)
+  use "numToStr/Comment.nvim"
+
+  if packer_bootstrap then
+    require('packer').sync()
+  end
+end, 
+config = {
+  display = {
+    open_fn = function()
+      return require('packer.util').float({ border = 'rounded' })
+    end
+  }
+}})
