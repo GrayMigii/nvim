@@ -73,7 +73,7 @@ return packer.startup({function(use)
   use 'lewis6991/gitsigns.nvim'
 
   use "numToStr/Comment.nvim"
-  use 'rmehri01/onenord.nvim'
+  use 'sainnhe/everforest'
 
   if packer_bootstrap then
     require('packer').sync()
