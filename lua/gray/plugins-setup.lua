@@ -28,8 +28,6 @@ return packer.startup({function(use)
 
   use 'nvim-lua/plenary.nvim' 
 
-  use 'sainnhe/everforest'
-
   use 'nvim-tree/nvim-tree.lua'
 
   use 'kyazdani42/nvim-web-devicons'
@@ -75,6 +73,7 @@ return packer.startup({function(use)
   use 'lewis6991/gitsigns.nvim'
 
   use "numToStr/Comment.nvim"
+  use 'rmehri01/onenord.nvim'
 
   if packer_bootstrap then
     require('packer').sync()
