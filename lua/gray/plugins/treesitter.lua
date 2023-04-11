@@ -20,6 +20,7 @@ treesitter.setup({
     "html",
     "css",
     "python",
+    "rust",
   },
   -- auto install above language parsers
   auto_install = true,
